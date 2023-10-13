@@ -3,7 +3,7 @@ import { Movies } from "../components/Movies";
 import { Preloader } from "../components/Preloader";
 import { Search } from "../components/Search";
 
-const API_KEY = process.env.REACT_APP_API.KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export class Main extends Component {
     state = {
