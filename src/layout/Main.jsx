@@ -12,14 +12,17 @@ export function Main() {
     useEffect(() => {
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
             .then((response) => response.json())
-            .then((data) => setMovies(data.search), setLoading(false))
+            .then((data) => {
+                setMovies(data.Search);
+                setLoading(false);
+            })
             .catch((err) => {
                 console.log(err);
                 setLoading(false);
             });
-    }, [movies, loading]);
+    }, []);
 
-    const searchMovie = (search, type) => {
+    const searchMovie = (search, type = 'all') => {
         setLoading(true);
         fetch(
             `https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}${
@@ -27,7 +30,10 @@ export function Main() {
             }`
         )
             .then((response) => response.json())
-            .then((data) => setMovies(data.search), setLoading(true))
+            .then((data) => {
+                setLoading(false);
+                setMovies(data.Search);
+            })
             .catch((err) => {
                 console.log(err);
                 setLoading(false);
